@@ -44,6 +44,7 @@
 
       html {
         scroll-behavior: smooth;
+        overflow-x: hidden;
       }
 
       body {
@@ -52,6 +53,7 @@
         color: var(--ink);
         font-family: var(--font, inherit);
         letter-spacing: 0;
+        overflow-x: hidden;
       }
 
       a {
@@ -216,6 +218,16 @@
         font-size: clamp(3.1rem, 6.2vw, 5.6rem);
         line-height: 0.95;
         letter-spacing: 0;
+      }
+
+      .hero-copy,
+      .section-head,
+      .feature-row,
+      .capability,
+      .example,
+      .principle,
+      .install {
+        min-width: 0;
       }
 
       .hero-copy p {
@@ -415,6 +427,46 @@
         color: rgba(232, 246, 255, 0.68);
       }
 
+      .name-story {
+        display: grid;
+        grid-template-columns: 0.55fr 1fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .name-mark {
+        display: grid;
+        place-items: center;
+        width: min(260px, 100%);
+        aspect-ratio: 1;
+        border: 1px solid rgba(154, 220, 255, 0.18);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.055);
+        box-shadow: inset 0 0 60px rgba(19, 185, 255, 0.1);
+      }
+
+      .name-mark span {
+        font-size: clamp(4rem, 12vw, 7rem);
+        font-weight: 860;
+        line-height: 1;
+        color: var(--amber-2);
+      }
+
+      .name-copy h2 {
+        margin: 0;
+        max-width: 680px;
+        font-size: clamp(2.1rem, 4vw, 3.7rem);
+        line-height: 1;
+      }
+
+      .name-copy p {
+        margin: 22px 0 0;
+        max-width: 660px;
+        color: rgba(232, 246, 255, 0.72);
+        font-size: 1.08rem;
+        line-height: 1.65;
+      }
+
       .feature-rows {
         display: grid;
         gap: 16px;
@@ -434,6 +486,7 @@
 
       .feature-row h3,
       .capability h3,
+      .example h3,
       .principle h3 {
         margin: 0;
         font-size: 1.2rem;
@@ -442,6 +495,7 @@
 
       .feature-row p,
       .capability p,
+      .example p,
       .principle p {
         margin: 0;
         color: var(--muted);
@@ -472,20 +526,90 @@
       .capability {
         min-height: 196px;
         padding: 24px;
-        border: 1px solid rgba(154, 220, 255, 0.18);
+        border: 1px solid var(--line);
         border-radius: var(--radius);
+        background: var(--white);
+        box-shadow: 0 10px 34px rgba(10, 31, 56, 0.06);
+      }
+
+      .section.dark .capability {
+        border-color: rgba(154, 220, 255, 0.18);
         background: rgba(255, 255, 255, 0.055);
+        box-shadow: none;
       }
 
       .capability .icon-box {
         margin-bottom: 22px;
-        background: rgba(19, 185, 255, 0.13);
-        color: var(--cyan-2);
       }
 
       .capability p {
         margin-top: 12px;
+      }
+
+      .section.dark .capability p {
         color: rgba(232, 246, 255, 0.67);
+      }
+
+      .example-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .example {
+        display: grid;
+        gap: 16px;
+        min-height: 248px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(180deg, rgba(19, 185, 255, 0.06), rgba(255, 255, 255, 0) 44%),
+          var(--white);
+        box-shadow: 0 10px 34px rgba(10, 31, 56, 0.06);
+      }
+
+      .section.dark .example {
+        border-color: rgba(154, 220, 255, 0.18);
+        background: rgba(255, 255, 255, 0.055);
+        box-shadow: none;
+      }
+
+      .example .icon-box {
+        background: #fff4dc;
+        color: #a45c00;
+      }
+
+      .example p {
+        align-self: start;
+      }
+
+      .section.dark .example p {
+        color: rgba(232, 246, 255, 0.67);
+      }
+
+      .example-flow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-self: end;
+      }
+
+      .example-flow span {
+        border: 1px solid #dfeaf4;
+        border-radius: 999px;
+        padding: 7px 10px;
+        background: #f7fbff;
+        color: #496174;
+        font-size: 0.78rem;
+        font-weight: 780;
+        line-height: 1;
+      }
+
+      .section.dark .example-flow span {
+        border-color: rgba(103, 217, 255, 0.24);
+        background: rgba(19, 185, 255, 0.1);
+        color: var(--cyan-2);
       }
 
       .principles {
@@ -507,8 +631,17 @@
         background: var(--white);
       }
 
+      .section.dark .principle {
+        border-color: rgba(154, 220, 255, 0.18);
+        background: rgba(255, 255, 255, 0.055);
+      }
+
       .principle p {
         margin-top: 10px;
+      }
+
+      .section.dark .principle p {
+        color: rgba(232, 246, 255, 0.67);
       }
 
       .terminal {
@@ -558,9 +691,13 @@
       .install p {
         margin: 22px 0 30px;
         max-width: 500px;
-        color: rgba(232, 246, 255, 0.72);
+        color: var(--muted);
         font-size: 1.06rem;
         line-height: 1.65;
+      }
+
+      .section.dark .install p {
+        color: rgba(232, 246, 255, 0.72);
       }
 
       .footer {
@@ -610,10 +747,15 @@
         }
 
         .section-head,
+        .name-story,
         .principles,
         .install {
           grid-template-columns: 1fr;
           display: grid;
+        }
+
+        .name-mark {
+          width: 190px;
         }
 
         .feature-row {
@@ -624,21 +766,30 @@
           grid-column: 2;
         }
 
-        .capability-grid {
+        .capability-grid,
+        .example-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
       @media (max-width: 680px) {
+        .container {
+          width: min(100% - 32px, 358px);
+          margin-left: 16px;
+          margin-right: 16px;
+        }
+
         .nav {
           align-items: flex-start;
+          flex-wrap: wrap;
           padding: 18px 0;
         }
 
         .nav-links {
+          width: 100%;
           gap: 12px;
           flex-wrap: wrap;
-          justify-content: flex-end;
+          justify-content: flex-start;
           font-size: 0.84rem;
         }
 
@@ -654,12 +805,34 @@
         }
 
         .hero-copy h1 {
-          font-size: 2.88rem;
+          max-width: 100%;
+          font-size: 2.35rem;
+          line-height: 1.04;
+          overflow-wrap: break-word;
         }
 
         .hero-copy p {
+          max-width: 100%;
           font-size: 1.04rem;
           margin-top: 20px;
+          overflow-wrap: break-word;
+        }
+
+        .section-head h2,
+        .name-copy h2,
+        .install h2 {
+          font-size: 2rem;
+          line-height: 1.08;
+          overflow-wrap: break-word;
+        }
+
+        .section-head p,
+        .feature-row p,
+        .example p,
+        .capability p,
+        .principle p,
+        .install p {
+          overflow-wrap: break-word;
         }
 
         .hero {
@@ -667,7 +840,8 @@
         }
 
         .hero-notes,
-        .capability-grid {
+        .capability-grid,
+        .example-grid {
           grid-template-columns: 1fr;
         }
 
@@ -746,9 +920,9 @@
           <div class="hero-copy">
             <h1>Your local-first household agent</h1>
             <p>
-              BeaverKi is an open-source assistant runtime for a person, family, or small
-              household. It runs on hardware you control, keeps memory and audit history local,
-              and acts through clear approval boundaries.
+              BeaverKi is an open-source assistant for a person, family, household, or circle
+              of friends. It runs on hardware you control, remembers useful context locally,
+              and asks before taking bigger actions.
             </p>
             <div class="hero-actions">
               <a class="button primary" href="#install">
@@ -766,16 +940,16 @@
             </div>
             <div class="hero-notes" aria-label="Highlights">
               <div class="note">
-                <strong>Local state</strong>
-                <span>SQLite history, memory, tasks, approvals, and roles stay on your machine.</span>
+                <strong>Runs at home</strong>
+                <span>Reminders, notes, and household context stay on your own machine.</span>
               </div>
               <div class="note">
-                <strong>Bounded action</strong>
-                <span>Policy controls and audit trails make automation inspectable.</span>
+                <strong>Asks first</strong>
+                <span>Routine nudges can happen quickly; sensitive actions need approval.</span>
               </div>
               <div class="note">
                 <strong>Household ready</strong>
-                <span>Multiple users, household roles, trusted circles, and reminders.</span>
+                <span>Built for families, flatmates, trusted friends, and recurring chores.</span>
               </div>
             </div>
           </div>
@@ -785,32 +959,32 @@
             <div class="console">
               <div class="console-top">
                 <div class="dots"><span></span><span></span><span></span></div>
-                <span>local daemon active</span>
+                <span>home helper active</span>
               </div>
               <div class="console-body">
                 <div class="task-row">
                   <span class="status-dot"></span>
                   <div>
                     <strong>Shopping reminder queued</strong>
-                    <span>deliver to mapped household member</span>
+                    <span>send to the person near the store</span>
                   </div>
-                  <span class="task-tag">policy ok</span>
+                  <span class="task-tag">ready</span>
                 </div>
                 <div class="task-row">
                   <span class="status-dot amber"></span>
                   <div>
                     <strong>Approval requested</strong>
-                    <span>filesystem write needs operator review</span>
+                    <span>ask before sending the message</span>
                   </div>
                   <span class="task-tag">pending</span>
                 </div>
                 <div class="task-row">
                   <span class="status-dot blue"></span>
                   <div>
-                    <strong>Notion note captured</strong>
-                    <span>skill run recorded in audit history</span>
+                    <strong>Repair note saved</strong>
+                    <span>easy to find again later</span>
                   </div>
-                  <span class="task-tag">logged</span>
+                  <span class="task-tag">saved</span>
                 </div>
               </div>
             </div>
@@ -824,8 +998,8 @@
             <div class="section-head">
               <h2>Built for a real household</h2>
               <p>
-                BeaverKi treats the home as a small operating environment with people, trust
-                levels, recurring work, and shared context.
+                BeaverKi is built for the way homes actually work: different people, recurring
+                chores, shared memory, and tasks that should not all depend on one person.
               </p>
             </div>
 
@@ -836,10 +1010,10 @@
                     <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM21 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <h3>Household roles</h3>
+                <h3>People and responsibilities</h3>
                 <p>
-                  Map requests to real people with roles and permissions, from a trusted operator
-                  to family members and guest-style shared spaces.
+                  Send the right request to the right person, whether that is a parent, partner,
+                  flatmate, guest, or trusted friend helping out.
                 </p>
               </article>
 
@@ -849,10 +1023,10 @@
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM9.5 12l1.8 1.8 3.7-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <h3>Bounded autonomy</h3>
+                <h3>Helpful, not reckless</h3>
                 <p>
-                  Let the agent act without approving every tiny step, while policy rules,
-                  spend envelopes, and approvals keep important actions explicit.
+                  Let simple things move on their own, like reminders and follow-ups, while money,
+                  outside messages, and bigger decisions still wait for approval.
                 </p>
               </article>
 
@@ -862,11 +1036,149 @@
                     <path d="M4 7c0-2 3.6-3.5 8-3.5S20 5 20 7s-3.6 3.5-8 3.5S4 9 4 7Zm0 0v10c0 2 3.6 3.5 8 3.5S20 19 20 17V7M4 12c0 2 3.6 3.5 8 3.5S20 14 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <h3>Local memory</h3>
+                <h3>Memory at home</h3>
                 <p>
-                  Keep durable operational memory, task history, audit trails, and household
-                  context in local SQLite storage instead of a hosted SaaS account.
+                  Keep preferences, chores, decisions, and notes on your machine, so useful
+                  household context is not scattered across old chats.
                 </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section dark" id="name">
+          <div class="container name-story">
+            <div class="name-mark" aria-hidden="true">
+              <span>Ki</span>
+            </div>
+            <div class="name-copy">
+              <h2>Why BeaverKi?</h2>
+              <p>
+                Beavers are builders. Ki points to the Japanese word for spirit or energy.
+                Together, the name fits an assistant that quietly helps a household build and
+                keep momentum without taking over the home.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section white" id="examples">
+          <div class="container">
+            <div class="section-head">
+              <h2>Useful around the house</h2>
+              <p>
+                BeaverKi is meant for everyday coordination: the small plans, reminders, and
+                shared responsibilities that usually live across chats and memory.
+              </p>
+            </div>
+
+            <div class="example-grid">
+              <article class="example">
+                <div class="icon-box">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l-1.1 13H6.1L5 7ZM9 11v3M15 11v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h3>Shopping and errands</h3>
+                <p>
+                  Keep a shared list from messages like "we need milk", ask which brand if it
+                  matters, and remind the person who is already near the store.
+                </p>
+                <div class="example-flow" aria-label="Shopping and errands workflow">
+                  <span>add item</span>
+                  <span>ask detail</span>
+                  <span>remind</span>
+                </div>
+              </article>
+
+              <article class="example">
+                <div class="icon-box">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 2v4M16 2v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2ZM8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h3>Family scheduling</h3>
+                <p>
+                  Remember appointments, pickups, visits, and recurring chores so the plan is
+                  visible to everyone instead of living in one person's head.
+                </p>
+                <div class="example-flow" aria-label="Family scheduling workflow">
+                  <span>note date</span>
+                  <span>tell people</span>
+                  <span>check back</span>
+                </div>
+              </article>
+
+              <article class="example">
+                <div class="icon-box">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                    <path d="M14.7 6.3a4 4 0 0 1 3 6.7l-5.6 5.6a4 4 0 1 1-5.7-5.7l.9-.9M9.3 17.7a4 4 0 0 1-3-6.7l5.6-5.6a4 4 0 1 1 5.7 5.7l-.9.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h3>Remember what happened</h3>
+                <p>
+                  Save what the plumber said, which subscription was cancelled, or why a decision
+                  was made, so nobody has to search old chats later.
+                </p>
+                <div class="example-flow" aria-label="Home admin workflow">
+                  <span>save note</span>
+                  <span>summarize</span>
+                  <span>find later</span>
+                </div>
+              </article>
+
+              <article class="example">
+                <div class="icon-box">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM9 12l2 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h3>Ask before it matters</h3>
+                <p>
+                  Let simple reminders happen automatically, but ask first before spending money,
+                  sending a message, or making a bigger household decision.
+                </p>
+                <div class="example-flow" aria-label="Approval workflow">
+                  <span>suggest</span>
+                  <span>ask</span>
+                  <span>do it</span>
+                </div>
+              </article>
+
+              <article class="example">
+                <div class="icon-box">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h3>Shared preferences</h3>
+                <p>
+                  Remember who dislikes a food, which friend needs a ride, or how guests like the
+                  coffee, then use that context the next time plans come up.
+                </p>
+                <div class="example-flow" aria-label="Shared memory workflow">
+                  <span>remember</span>
+                  <span>use next time</span>
+                  <span>update</span>
+                </div>
+              </article>
+
+              <article class="example">
+                <div class="icon-box">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 12h16M12 4v16M7 7l10 10M17 7 7 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h3>Plans with friends</h3>
+                <p>
+                  Turn a messy group chat into a simple plan: who's coming, what to bring, where
+                  to meet, and who still needs a nudge.
+                </p>
+                <div class="example-flow" aria-label="Connector workflow">
+                  <span>collect</span>
+                  <span>organize</span>
+                  <span>nudge</span>
+                </div>
               </article>
             </div>
           </div>
@@ -877,8 +1189,8 @@
             <div class="section-head">
               <h2>What BeaverKi can do today</h2>
               <p>
-                The current runtime foundation is usable and intentionally practical: daemon,
-                CLI, local UI, skills, and first integrations.
+                The current foundation is early but practical: local control, reminders,
+                approvals, shared notes, and first integrations.
               </p>
             </div>
 
@@ -889,8 +1201,8 @@
                     <path d="m7 8 4 4-4 4M13 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <h3>CLI workflow</h3>
-                <p>Initialize, run tasks, inspect history, list approvals, and operate the daemon from make targets.</p>
+                <h3>Local control</h3>
+                <p>Run BeaverKi on your own machine and start tasks without depending on a hosted account.</p>
               </article>
 
               <article class="capability">
@@ -899,8 +1211,8 @@
                     <path d="M6 20V10M12 20V4M18 20v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <h3>Persistent daemon</h3>
-                <p>A long-lived Rust process owns state, schedules work, coordinates tools, and keeps execution traceable.</p>
+                <h3>Always-on helper</h3>
+                <p>Keep a local helper running in the background for reminders, follow-ups, and task history.</p>
               </article>
 
               <article class="capability">
@@ -909,8 +1221,8 @@
                     <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <h3>Discord control</h3>
-                <p>Use approved direct messages and channels as remote control surfaces with trust-aware mapping.</p>
+                <h3>Chat control</h3>
+                <p>Use approved Discord messages as a familiar way to ask for help from another room or while away.</p>
               </article>
 
               <article class="capability">
@@ -919,8 +1231,8 @@
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8ZM14 2v6h6M8 13h8M8 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <h3>Notion tools</h3>
-                <p>Capture notes, search workspace content, read pages, append content, and comment through first-party skills.</p>
+                <h3>Shared notes</h3>
+                <p>Capture household notes in Notion, find them later, and add useful context when plans change.</p>
               </article>
 
               <article class="capability">
@@ -929,8 +1241,8 @@
                     <path d="M12 2v5M12 17v5M4.93 4.93l3.54 3.54M15.54 15.54l3.53 3.53M2 12h5M17 12h5M4.93 19.07l3.54-3.53M15.54 8.46l3.53-3.53" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <h3>Installable skills</h3>
-                <p>Add focused capabilities through skill manifests and Lua scripts without expanding the runtime core.</p>
+                <h3>Add new abilities</h3>
+                <p>Extend BeaverKi with focused skills as new household needs and favorite tools appear.</p>
               </article>
 
               <article class="capability">
@@ -939,8 +1251,8 @@
                     <path d="M9 11 12 14 22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </div>
-                <h3>Approval history</h3>
-                <p>Record material actions, pending approvals, policy decisions, and task outcomes for later inspection.</p>
+                <h3>Clear history</h3>
+                <p>See what was requested, what happened, and what still needs a human decision.</p>
               </article>
             </div>
           </div>

@@ -2,6 +2,9 @@
 
 Static homepage for BeaverKi at `beaverki.org`.
 
+BeaverKi combines the beaver as a practical builder with `Ki`, pointing to
+the Japanese word for spirit or energy.
+
 ## GitHub Pages
 
 This repository is intentionally build-free. GitHub Actions deploys the repository root directly to GitHub Pages.
